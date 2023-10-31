@@ -1,14 +1,17 @@
 {
-  "functions": {
-    "api/server.js": {
-      "memory": 1024,
-      "includeFiles": "db.json"
-    }
-  },
-  "rewrites": [
+  "version": 2,
+  "builds": [
+    { "src": "angular.json", "use": "@vercel/static-build" },
+    { "src": "server.js", "use": "@now/node" }
+  ],
+  "routes": [
     {
-      "source": "/(.*)",
-      "destination": "api/server.js"
+      "src": "/api/(.*)",
+      "dest": "server.js"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "angular.json"
     }
   ]
 }
